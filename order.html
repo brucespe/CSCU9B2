@@ -1,0 +1,179 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Carrier Bag Designer</title>
+	<!--Title of the page-->
+	<meta name="bagCreator" content="The bag creator co">
+	<link rel="stylesheet" href="assign.css">
+	<!--links css stylesheet-->
+
+	<script>
+		var colours = ["#ffffff", "#000000", "#f44336", "#4286f4", "#62ff54", "#fff263"];
+		//array of colour codes
+		var coloursText = ["white", "black", "red", "blue", "green", "yellow"];
+		//array of colour names, matches positions on the code array
+		var currentTextIndex = 1;
+		//index for array, used for text colour, initially set at 1 (black)
+		var currentIndex = 0;
+		//index for array, updates for the colour currently being used, initially position 0 (white)
+		var currentLogo = "";
+		//sets the current logo to blank
+
+		function colour(index)	//runs if a colour button is clicked, is passed a value which will be used as the index
+		{
+			currentIndex = index;
+			//assigns the currentIndex to the value that has been passed
+	    	currentColour = colours[index];
+	    	//sets the current colour to the colour in the array at position currentIndex
+			ctx.fillStyle = colours[index];
+			//sets the fill style of the canvas to this colour
+			ctx.fill();
+			//fills the canvas
+		}
+
+		function logo(form1)	//runs when a logo is submitted in the form, the form is passed to this function
+		{
+			if (form1.text1.value == ""){	//runs if form was empty
+				alert("Please enter a logo");
+				//displays error message
+			}
+			else{	//runs if form is not empty
+				colour(currentIndex);
+				//Repaints background to clear current text
+				currentTextIndex = form1.textColour.value;
+				//sets the colour selected to the current text colour index
+				currentLogo = form1.text1.value;
+				//assigns currentLogo variable to the value submitted in form
+				if (currentLogo.length >23){	//runs if logo is longer than 23 characters
+					alert("Your logo is too long please try again");
+					//displays error message as logo wont fit on bag
+				}
+				else {	//runs if logo is 23 characters or less
+					ctx.font = "bold 25px Futura";
+					//sets font of logo
+					ctx.fillStyle = colours[currentTextIndex];
+					//sets colour of logo
+					ctx.textAlign = "center";
+					//centres the logo
+					ctx.fillText(currentLogo , 200 , 230);
+					//displays the logo on the canvas
+				}
+			}
+		}
+
+		function orders(orderForm)	//runs if order form is submitted, passinng the form
+		{
+			var orderAmount = orderForm.text2.value;
+			//sets orderAmount to the amount submitted
+			if (orderAmount<100)	//runs if orderAmount is less than 100
+			{
+				alert("The minimum order amount is 100 ");
+				//displays error message
+			}
+			else	//runs if amount is 100 or greater
+			{
+				var orderPrice = orderAmount*3;
+				//gets the price by multiplying amount by 3p
+				orderPrice = orderPrice/100;
+				//converts pence to pounds
+				alert("You have ordered " + orderAmount + " " + coloursText[currentIndex] + " bags for £" + orderPrice + " with the logo: " + currentLogo);
+				//displays all the outputs user have entered
+			}
+		}
+
+
+	</script>
+
+</head>
+
+<body>
+
+	<ul>
+		<li class="nav"><a href="home.html">Home</a></li>
+		<li class="nav"><a href="#order"><u>Order</u></a></li>
+		<li class="nav"><a href="#contact">Contact</a></li>
+		<li class="nav"><a href="#login">Login</a></li>
+		<li class="nav"><a href="#about">About</a></li>
+	</ul>
+	<!--A navigation bar for each web page-->
+
+	<div class="column1">
+		<h1>Order</h1>
+		<!--page header-->
+
+		<canvas id="myCanvas" width="400" height="400"></canvas>
+		<!--displays a canvas on the page -->
+
+		<script>
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+			<!--assigns variables to use the canvas-->
+
+			ctx.beginPath();
+			ctx.moveTo(50,40); //top left
+			ctx.lineTo(50,360); //bottom left
+			ctx.lineTo(350,360); //bottom right
+			ctx.lineTo(350,40); //top right
+			ctx.lineTo(310,40); //right handle top corner
+			ctx.lineTo(310,120); //right handle bottom corner
+			ctx.lineTo(90,120); //left handle bottom corner
+			ctx.lineTo(90,40); //left handle top corner
+			ctx.lineTo(50,40); //top left
+			ctx.lineWidth = 1;
+	    	ctx.stroke();
+	    	<!--Draws a bag shape on the canvas, specifying the line width-->
+
+	    </script>
+    </div>
+
+	<div class="column2">
+		<br><br><br>
+		<h4>Please use the selections below to create your own bag</h4>
+
+		<button class = "button1" onclick="colour(0)" name="white" type="button">White</button>
+		<button class = "button2" onclick="colour(1)" name="Black" type="button">Black</button>
+		<button class = "button3" onclick="colour(2)" name="red" type="button">Red</button> <br>
+		<button class = "button4" onclick="colour(3)" name="blue" type="button">Blue</button>
+		<button class = "button5" onclick="colour(4)" name="green" type="button">Green</button>
+		<button class = "button6" onclick="colour(5)" name="yellow" type="button">Yellow</button>
+		<!--Coloured buttons to change the colour of the bags-->
+		<br><br><br>
+			<form name="logoForm" action="form_action.asp" id="logoForm">
+				Enter a logo, maximum of 23 characters <br>
+				<input type="text" onfocus="this.value=''" name="text1">
+				<input type="button" value="Enter" onClick="logo(this.form)">
+				<input type="button" value="Clear" onClick="colour(currentIndex)">
+			</form>
+			<!--Form to submit a logo, on submit calls the logo function and colour function, functions clear the current logo and displays new logo on the bag-->
+
+					<select name="textColour" form="logoForm">
+						<option value="1">Black</option>
+						<option value="0">White</option>
+						<option value="2">Red</option>
+						<option value="3">Blue</option>
+						<option value="4">Green</option>
+						<option value="5">Yellow</option>
+					</select>
+					<!--drop down menu that lets user select text colour-->
+
+				<br><br>
+
+
+			<form name="logoForm2" action="form_action.asp" id="logoForm2">
+				Enter order quantity, minimum of 100 bags <br>
+				<input type="number" onfocus="this.value=''" name="text2">
+				<input type="button" value="Enter" onClick="orders(this.form)">
+			</form>
+			<!--Form that lets users input how much bags they would like to buy, calls orders function that displays output message-->
+	</div>
+
+	<div class = "footer">
+		<small>The bag creator co</small>
+    </div>
+    <!--footer with small message at bottom of the page-->
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+
+.header{	/*header of page*/
+	width: 80%;
+	margin-left: auto;
+	margin-right:auto;	/*sets width and margin of header*/
+	overflow: auto;
+	}
+	
+h1{
+	font-family: Sans-serif;
+	text-align: center
+	}
+	
+h2{
+	font-family: Sans-serif;
+	}
+	
+p{
+	font-family: Sans-serif;
+	}
+	
+	/*font family for headers and paragraphs*/
+
+ul{	/*unordered lists - navigation bar */
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	background-color: #333;
+	overflow: hidden;
+}
+
+
+li.nav{	/* navigation bar*/	
+	display: inline;
+	float: left;
+}
+
+li a{	/* navigation bar*/
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+body{
+	background-color: #DCDCDC; /*background colour grey*/
+}
+
+canvas{
+	background-color:white; /* makes canvas white*/
+}
+
+.button1{
+	background-color: #ffffff; /* white */
+	cursor: pointer; /*curser changes to a pointer when hovered over*/
+	color:black; /*button colour*/
+	font-size: 20px; /*button font size*/
+	padding: 12px 32px; /*button padding*/
+}
+
+.button2{
+	background-color: #000000; /*Black */
+	cursor: pointer;
+	color:white;
+	font-size: 20px;
+	padding: 12px 32px;
+}
+
+.button3{
+	background-color: #f44336; /*Red */
+	cursor: pointer;
+	color:white;
+	font-size: 20px;
+	padding: 12px 32px;
+}
+
+.button4{
+	background-color: #4286f4; /*Blue */
+	cursor: pointer;
+	color:white;
+	font-size: 20px;
+	padding: 12px 32px;
+}
+
+.button5{
+	background-color: #62ff54; /*Green */
+	cursor: pointer;
+	color:black;
+	font-size: 20px;
+	padding: 12px 32px;
+}
+
+.button6{
+	background-color: #fff263; /*yellow */
+	cursor: pointer;
+	color:black;
+	font-size: 20px;
+	padding: 12px 32px;
+}
+
+
+.column1{	/*column containing canvas*/
+	float:left; /*makes column float to the left side*/
+	padding: 5px 32px;
+}
+
+.column2{	/*column containing buttons and logo and order form*/
+	padding: 5px 32px;
+	width: 98%; /*width of column 2*/
+}
+
+.image{
+	max-width:30%;
+        max-height:30%;
+        padding: 5px 32px;
+        float:left; /*makes column float to the left side*/
+
+}
+
+.footer {	/*footer at bottom of page*/
+   position: fixed; /*fixes it in position, cannot be moved*/
+   left: 0; /*starts on left side of the page*/
+   bottom: 0; /*positions at bottom of page*/
+   width: 100%; /*makes the width the size of the page*/
+   background-color: black;
+   color: white;
+   text-align: center; /*makes text centred*/
+}
